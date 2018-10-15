@@ -63,7 +63,13 @@ class WorkerJobDispatcher extends Task
             $matchedRoute = $this->jobs->getMatchedRoute();
 
             if ($matchedRoute instanceof Router\Route) {
-                $callback = [$matchedRoute->getPaths()['task'], $matchedRoute->getPaths()['action']];
+                $paths = $matchedRoute->getPaths();
+                $task = $paths['task'] ?? '';
+                $action = $paths['action'] ?? '';
+                $callback = [$task, $action];
+
+                fwrite(STDOUT, "[x] Firing up the job - $task:$action #" . PHP_EOL);
+
                 try {
                     call_user_func($callback, $message);
                 } catch (\Exception $exception) {

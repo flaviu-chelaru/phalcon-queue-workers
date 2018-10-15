@@ -8,7 +8,6 @@ class DefaultQueueJob
 {
     public function run(AMQPMessage $message)
     {
-        var_dump($message);
-        die;
+        print $message->getBody();
     }
 }
