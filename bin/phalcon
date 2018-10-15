@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+use CFV\PhalconWorker\Application;
+use CFV\PhalconWorker\Di;
+use CFV\PhalconWorker\Providers\JobsProvider;
+use CFV\PhalconWorker\Providers\TasksProvider;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+set_error_handler(function ($code, $message, $file, $line) {
+    fwrite(STDERR, "[{$code}] {$file}:{$line} " . $message . PHP_EOL);
+});
+
+$di = new Di();
+
+$app = new Application($di);
+$app->setArgument($argv, true);
+$app->di->register(new TasksProvider());
+$app->di->register(new JobsProvider());
+
+$app->handle();
+
+print PHP_EOL;

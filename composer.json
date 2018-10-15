@@ -1,0 +1,34 @@
+{
+  "name": "cfv1000/phalcon-queue-worker",
+  "description": "A simple phalcon queue worker for RabbitMQ",
+  "keywords": [
+    "phalcon",
+    "cli",
+    "RabbitMQ",
+    "worker"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Flaviu Chelaru",
+      "email": "flaviu.chelaru@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "~7.1",
+    "ext-phalcon": "~3.3",
+    "php-amqplib/php-amqplib": "^2.7"
+  },
+  "require-dev": {
+    "phalcon/ide-stubs": "^3.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "CFV\\PhalconWorker\\": "src/"
+    }
+  },
+  "bin": [
+    "bin/phalcon"
+  ]
+}
